@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <head>
 
@@ -39,24 +39,23 @@
 
 		<!-- Navigation -->
 		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target=".navbar-ex1-collapse"></button>
-			</div>
-			<!-- Top Menu Items -->
-			<ul class="nav navbar-right top-nav">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-ex1-collapse"></button>
+		</div>
+		<!-- Top Menu Items -->
+		<ul class="nav navbar-right top-nav">
+		</ul>
+		<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+		<div class="collapse navbar-collapse navbar-ex1-collapse">
+			<ul class="nav navbar-nav side-nav">
+				<li class="active"><a href="http://www.fateczl.edu.br"
+					target="_blank"><img alt="FATEC ZONA LESTE"
+						src="./images/fateczl.png" height="90" width="196"></a></li>
 			</ul>
-			<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-			<div class="collapse navbar-collapse navbar-ex1-collapse">
-				<ul class="nav navbar-nav side-nav">
-					<li class="active"><a href="http://www.fateczl.edu.br"
-						target="_blank"><img alt="FATEC ZONA LESTE"
-							src="./images/fateczl.png" height="90" width="196"></a></li>
-				</ul>
-			</div>
-			<!-- /.navbar-collapse -->
-		</nav>
+		</div>
+		<!-- /.navbar-collapse --> </nav>
 
 		<div id="page-wrapper">
 
@@ -83,14 +82,16 @@
 												<tr>
 													<td><input class="form-control"
 														placeholder="Digite o RA" size="10" name="raaluno"></td>
-													<td>
-														<input type="submit" class="btn btn-primary" name="enviar" title="ENVIAR">
-													</td>
+													<td><input type="submit" class="btn btn-primary"
+														name="enviar" title="ENVIAR"></td>
 												</tr>
 											</table>
 										</div>
 									</form>
 								</div>
+							</div>
+							<div class="alert alert-warning">
+								<strong>ATENÇÃO!</strong> Caso seu RA não mostre nenhum certificado ou mostre outro aluno, comunique seu coordenador
 							</div>
 						</div>
 					</div>
