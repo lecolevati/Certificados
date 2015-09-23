@@ -21,11 +21,12 @@ public class PalestrasDao {
 	public List<Palestra> consultaPalestraPorAluno(String ra) throws SQLException{
 		List<Palestra> lista = new ArrayList<Palestra>();
 		StringBuffer sql = new StringBuffer();
-		sql.append("select RA, ALUNO, TITULO, CONVERT(CHAR(10), DATA, 103) AS DT, "); 
-		sql.append("CONVERT(CHAR(10), DATA, 108) AS HR, TITULACAO, PALESTRANTE, ");
-		sql.append("TIPO, CURSO, CAST(QUANT AS VARCHAR(2))+' '+UNIDADE AS DURACAO ");
-		sql.append("from palestras$ ");
-		sql.append("where RA = ? ");
+		sql.append("select p.ra, p.aluno, p.titulo as cod_titulo, t.titulo, CONVERT(CHAR(10), p.DATA, 103) AS DT, ");
+		sql.append("CONVERT(CHAR(10), p.DATA, 108) AS HR, p.titulacao, p.palestrante, ");
+		sql.append("p.tipo, p.curso, CAST(p.QUANT AS VARCHAR(2))+' '+p.UNIDADE AS DURACAO ");
+		sql.append("from palestras$ p inner join titulo t ");
+		sql.append("on p.titulo = t.codigo ");
+		sql.append("where RA = ?  ");
 		sql.append("order by DATA, TITULO ");
 		PreparedStatement ps = c.prepareStatement(sql.toString());
 		ps.setString(1, ra);
@@ -42,14 +43,7 @@ public class PalestrasDao {
 			p.setTipo(rs.getString("tipo"));
 			p.setTitulacao(rs.getString("titulacao"));
 			p.setTitulo(rs.getString("titulo"));
-			
-			if (p.getTitulo().contains(" ")){
-				String[] tc = p.getTitulo().split(" ");
-				p.setTituloCondensado(tc[0]);
-			} else {
-				p.setTituloCondensado(p.getTitulo());				
-			}
-
+			p.setCodTitulo(rs.getInt("cod_titulo"));
 			lista.add(p);
 		}
 		rs.close();
@@ -57,13 +51,13 @@ public class PalestrasDao {
 		return lista;
 	}
 	
-	public String consultaTipoPalestra(String titulo) throws SQLException{
+	public String consultaTipoPalestra(int titulo) throws SQLException{
 		StringBuffer sql = new StringBuffer();
 		sql.append("select TIPO ");
 		sql.append("from palestras$ ");
-		sql.append("where TITULO LIKE ? ");
+		sql.append("where TITULO = ? ");
 		PreparedStatement ps = c.prepareStatement(sql.toString());
-		ps.setString(1, "%"+titulo+"%");
+		ps.setInt(1, titulo);
 		ResultSet rs = ps.executeQuery();
 		String tipo = "";
 		if (rs.next()){
@@ -74,13 +68,13 @@ public class PalestrasDao {
 		return tipo;
 	}
 	
-	public int consultaAnoPalestra(String titulo) throws SQLException{
+	public int consultaAnoPalestra(int titulo) throws SQLException{
 		StringBuffer sql = new StringBuffer();
 		sql.append("select YEAR(DATA) as ano ");
 		sql.append("from palestras$ ");
-		sql.append("where TITULO LIKE ? ");
+		sql.append("where TITULO = ? ");
 		PreparedStatement ps = c.prepareStatement(sql.toString());
-		ps.setString(1, "%"+titulo+"%");
+		ps.setInt(1, titulo);
 		ResultSet rs = ps.executeQuery();
 		int ano = 0;
 		if (rs.next()){
@@ -91,13 +85,13 @@ public class PalestrasDao {
 		return ano;
 	}
 	
-	public String consultaCursoPalestra(String titulo) throws SQLException{
+	public String consultaCursoPalestra(int titulo) throws SQLException{
 		StringBuffer sql = new StringBuffer();
 		sql.append("select CURSO ");
 		sql.append("from palestras$ ");
-		sql.append("where TITULO LIKE ? ");
+		sql.append("where TITULO = ? ");
 		PreparedStatement ps = c.prepareStatement(sql.toString());
-		ps.setString(1, "%"+titulo+"%");
+		ps.setInt(1, titulo);
 		ResultSet rs = ps.executeQuery();
 		String curso = "";
 		if (rs.next()){
@@ -106,6 +100,23 @@ public class PalestrasDao {
 		rs.close();
 		ps.close();
 		return curso;
+	}
+	
+	public String consultaTituloPalestra(int titulo) throws SQLException{
+		StringBuffer sql = new StringBuffer();
+		sql.append("select titulo ");
+		sql.append("from titulo ");
+		sql.append("where codigo = ? ");
+		PreparedStatement ps = c.prepareStatement(sql.toString());
+		ps.setInt(1, titulo);
+		ResultSet rs = ps.executeQuery();
+		String tit = "";
+		if (rs.next()){
+			tit = rs.getString("titulo");
+		}
+		rs.close();
+		ps.close();
+		return tit;
 	}
 	
 }

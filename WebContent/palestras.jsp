@@ -94,12 +94,19 @@
 													<tr>
 														<td><c:out value="${palestra.ra }" /></td>
 														<td><c:out value="${palestra.titulo }" /></td>
-														<td><a
-															href="${pageContext.request.contextPath}/certificados?ra=<c:out value=" ${palestra.ra }"/>&titulo=<c:out
-																value="${palestra.titulo }" />"
+<!-- 														<td><a
+															href="/certificados?ra=<c:out value=" ${palestra.ra }"/>&titulo=<c:out
+																value="${palestra.codTitulo }" />"
 															target="_blank"> <img alt="Download"
 																src="./images/pdficone.png" height="36" width="36">
 														</a></td>
+-->
+														<td><a
+															href="${pageContext.request.contextPath}/certificados?ra=<c:out value=" ${palestra.ra }"/>&titulo=<c:out
+																value="${palestra.codTitulo }" />"
+															target="_blank"> <img alt="Download"
+																src="./images/pdficone.png" height="36" width="36">
+														</a></td>														
 													</tr>
 												</c:forEach>
 												<tr>

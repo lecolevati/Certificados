@@ -43,6 +43,7 @@ public class CertificadosServlet extends HttpServlet {
 		String erro = "";
 		String ra = request.getParameter("ra").trim();
 		String titulo = request.getParameter("titulo").trim();
+		int codTitulo = Integer.parseInt(titulo);
 		byte[] bytes = null;
 		ServletContext context = getServletContext();
 
@@ -50,9 +51,9 @@ public class CertificadosServlet extends HttpServlet {
 		String assinatura = "";
 		try {
 			PalestrasDao pDao = new PalestrasDao();
-			String tipo = pDao.consultaTipoPalestra(titulo);
-			int ano = pDao.consultaAnoPalestra(titulo);
-			String curso = pDao.consultaCursoPalestra(titulo);
+			String tipo = pDao.consultaTipoPalestra(codTitulo);
+			int ano = pDao.consultaAnoPalestra(codTitulo);
+			String curso = pDao.consultaCursoPalestra(codTitulo);
 
 			if (curso.contains("COM") && ano < 2015) {
 				assinatura = context.getRealPath("/WEB-INF/images/assdil.jpg");

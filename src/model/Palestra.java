@@ -13,6 +13,7 @@ public class Palestra {
 	private String curso; 
 	private String duracao;
 	private String tituloCondensado;
+	private int codTitulo;
 	
 	public String getRa() {
 		return ra;
@@ -79,6 +80,12 @@ public class Palestra {
 	}
 	public void setTituloCondensado(String tituloCondensado) {
 		this.tituloCondensado = tituloCondensado;
+	}
+	public int getCodTitulo() {
+		return codTitulo;
+	}
+	public void setCodTitulo(int codTitulo) {
+		this.codTitulo = codTitulo;
 	}
 
 }
