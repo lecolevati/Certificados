@@ -81,7 +81,7 @@
 											<table class="table table-hover">
 												<tr>
 													<td><input class="form-control"
-														placeholder="Digite o RA" size="10" name="raaluno"></td>
+														placeholder="Digite o RA (Sem Pontos e Traço)" size="10" name="raaluno"></td>
 													<td><input type="submit" class="btn btn-primary"
 														name="enviar" title="ENVIAR"></td>
 												</tr>

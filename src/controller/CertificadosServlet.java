@@ -97,7 +97,7 @@ public class CertificadosServlet extends HttpServlet {
 			HashMap<String, Object> parametros = new HashMap<String, Object>();
 			parametros.put("ra", ra);
 			parametros.put("fundo", fundo);
-			parametros.put("titulo", titulo);
+			parametros.put("titulo", codTitulo);
 			parametros.put("assinatura", assinatura);
 
 			StringBuffer pathJasper = new StringBuffer();
